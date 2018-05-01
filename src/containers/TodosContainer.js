@@ -48,5 +48,8 @@ export default connect(
     ({todo}) => ({
         input: todo.input,
         todos: todo.todos
+    }),
+    (dispatch) => ({
+        TodoActions: bindActionCreators(TodoActions, dispatch)
     })
 )(TodosContainer);
