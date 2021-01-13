@@ -6,12 +6,13 @@ import * as counterActions from 'store/modules/counter';
 
 class CounterContainer extends Component {
   handleIncrement = () => {
-    this.props.increment();
+    const { CounterActions } = this.props;
+    CounterActions.increment();
   }
   handleDecrement = () => {
-    this.props.decrement();
+    const { CounterActions } = this.props;
+    CounterActions.decrement();
   }
-
   render() {
     const { handleIncrement, handleDecrement } = this;
     const { number } = this.props;
@@ -30,5 +31,7 @@ export default connect(
   (state) => ({
     number: state.counter.number
   }),
-  (dispatch) => bindActionCreators(counterActions, dispatch)
+  (dispatch) => ({
+    CounterActions: bindActionCreators(counterActions, dispatch)
+  })
 )(CounterContainer);
